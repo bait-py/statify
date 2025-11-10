@@ -1,8 +1,5 @@
-# Statify
-
-**Artist Analytics Dashboard for Spotify**
-
-A containerized web application for Spotify artists to analyze their music performance, track popularity metrics, and discover playlist placements.
+# Statify - Artist Analytics Dashboard for Spotify
+Statify is a containerized web application for Spotify artists to help them analyze their music performance, track popularity metrics, and discover playlist placements.
 
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 ![Docker](https://img.shields.io/badge/docker-ready-blue?style=flat-square&logo=docker)
@@ -11,7 +8,6 @@ A containerized web application for Spotify artists to analyze their music perfo
 ![Python](https://img.shields.io/badge/python-3.11-3776AB?style=flat-square&logo=python)
 
 ## Overview
-
 Statify provides artists with comprehensive insights into their Spotify presence through an intuitive dashboard. Built with modern web technologies and containerized for easy deployment.
 
 ## Features
@@ -148,18 +144,17 @@ npm run dev
 docker-compose up --build
 ```
 
-## License
+## Screenshots
+![Landing Page](login.png)
+![Analytics Dashboard](dashboard.png)
 
+---
+
+## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Contributing
-
 Contributions are welcome. Please open an issue first to discuss proposed changes.
 
 ## Author
-
 **Bruno Alonso** - [GitHub](https://github.com/bait-py)
-
-## Acknowledgments
-
-Inspired by Spotify for Artists platform and modern web development practices.
