@@ -1,14 +1,20 @@
-# Statify - Artist Analytics Dashboard for Spotify
-Statify is a containerized web application for Spotify artists to help them analyze their music performance, track popularity metrics, and discover playlist placements.
+<div align="center">
+  <img src="logo.png" alt="Statify Logo" width="120">
+  
+  # Statify - Artist Analytics Dashboard for Spotify
+  
+  Statify is a containerized web application that provides comprehensive artist analytics powered by the Spotify API. Built with a modern tech stack, it delivers real-time insights into artist performance, track popularity, and distribution metrics.
+</div>
 
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
-![Docker](https://img.shields.io/badge/docker-ready-blue?style=flat-square&logo=docker)
-![React](https://img.shields.io/badge/react-18.3-61DAFB?style=flat-square&logo=react)
-![FastAPI](https://img.shields.io/badge/fastapi-0.115-009688?style=flat-square&logo=fastapi)
-![Python](https://img.shields.io/badge/python-3.11-3776AB?style=flat-square&logo=python)
-
-## Overview
-Statify provides artists with comprehensive insights into their Spotify presence through an intuitive dashboard. Built with modern web technologies and containerized for easy deployment.
+<div align="center">
+  
+  ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
+  ![Docker](https://img.shields.io/badge/docker-ready-blue?style=flat-square&logo=docker)
+  ![React](https://img.shields.io/badge/react-18.3-61DAFB?style=flat-square&logo=react)
+  ![FastAPI](https://img.shields.io/badge/fastapi-0.115-009688?style=flat-square&logo=fastapi)
+  ![Python](https://img.shields.io/badge/python-3.11-3776AB?style=flat-square&logo=python)
+  
+</div>
 
 ## Features
 
