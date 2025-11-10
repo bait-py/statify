@@ -1,0 +1,35 @@
+services:
+  backend:
+    build: ./backend
+    container_name: statify-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      - SPOTIFY_REDIRECT_URI=${SPOTIFY_REDIRECT_URI}
+    volumes:
+      - ./backend:/app
+    networks:
+      - statify-network
+
+  frontend:
+    build: ./frontend
+    container_name: statify-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL=http://localhost:5000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - statify-network
+
+networks:
+  statify-network:
+    driver: bridge
