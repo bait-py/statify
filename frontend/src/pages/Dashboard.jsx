@@ -76,15 +76,15 @@ export default function Dashboard() {
     } catch (error) {
       console.error('Error loading artist data:', error);
       
-      // Mostrar mensaje de error específico
-      let errorMessage = 'Error al cargar datos del artista.';
+      // Show specific error message
+      let errorMessage = 'Error loading artist data.';
       
       if (error.code === 'ERR_BLOCKED_BY_CLIENT') {
-        errorMessage = 'Error: Tu navegador o una extensión (ad blocker) está bloqueando las peticiones. Por favor:\n\n1. Desactiva ad blockers (uBlock, AdBlock, etc.)\n2. Desactiva extensiones de privacidad\n3. Recarga la página';
+        errorMessage = 'Error: Your browser or an extension (ad blocker) is blocking requests. Please:\n\n1. Disable ad blockers (uBlock, AdBlock, etc.)\n2. Disable privacy extensions\n3. Reload the page';
       } else if (error.response) {
-        errorMessage = `Error del servidor: ${error.response.data.detail || error.response.statusText}`;
+        errorMessage = `Server error: ${error.response.data.detail || error.response.statusText}`;
       } else if (error.request) {
-        errorMessage = 'No se pudo conectar con el servidor. Verifica que el backend esté corriendo.';
+        errorMessage = 'Could not connect to server. Verify that the backend is running.';
       }
       
       alert(errorMessage);
@@ -106,12 +106,12 @@ export default function Dashboard() {
         {/* Header */}
         <div className="mb-8 flex items-center justify-between animate-slideLeft">
           <div className="flex items-center gap-4">
-            {/* Back Button - Solo visible cuando hay artista seleccionado */}
+            {/* Back Button - Only visible when artist is selected */}
             {selectedArtist && (
               <button
                 onClick={goBackToSearch}
                 className="bg-[#181818] hover:bg-[#282828] p-3 rounded-full border border-[#282828] hover:border-[#1DB954] transition-all transform hover:scale-110 group"
-                title="Volver a búsqueda"
+                title="Back to search"
               >
                 <svg 
                   className="w-6 h-6 text-[#B3B3B3] group-hover:text-[#1DB954] transition-colors" 
@@ -129,7 +129,7 @@ export default function Dashboard() {
                 {selectedArtist ? selectedArtist.name : 'Artist Dashboard'}
               </h1>
               <p className="text-[#B3B3B3]">
-                {selectedArtist ? 'Estadísticas detalladas del artista' : 'Descubre insights de artistas en Spotify'}
+                {selectedArtist ? 'Detailed artist statistics' : 'Discover insights about artists on Spotify'}
               </p>
             </div>
           </div>
@@ -139,7 +139,7 @@ export default function Dashboard() {
           </div>
         </div>
         
-        {/* Advertencia sobre ad blockers - Solo visible cuando NO hay artista seleccionado */}
+        {/* Ad blocker warning - Only visible when NO artist is selected */}
         {!selectedArtist && (
           <div className="mb-6 bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-2xl p-4 animate-fadeIn backdrop-blur-sm">
             <div className="flex items-start gap-3">
@@ -147,17 +147,17 @@ export default function Dashboard() {
                 <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
               </svg>
               <div className="flex-1">
-                <h3 className="text-yellow-400 font-bold mb-1">Desactiva los Ad Blockers</h3>
+                <h3 className="text-yellow-400 font-bold mb-1">Disable Ad Blockers</h3>
                 <p className="text-sm text-[#B3B3B3]">
-                  Si tienes problemas cargando datos, desactiva extensiones como <strong>uBlock Origin</strong>, <strong>AdBlock</strong>, 
-                  o <strong>Privacy Badger</strong> para este sitio. Estas extensiones pueden bloquear las peticiones a la API de Spotify.
+                  If you have trouble loading data, disable extensions like <strong>uBlock Origin</strong>, <strong>AdBlock</strong>, 
+                  or <strong>Privacy Badger</strong> for this site. These extensions may block requests to the Spotify API.
                 </p>
               </div>
             </div>
           </div>
         )}
         
-        {/* Search Bar - Solo visible cuando NO hay artista seleccionado */}
+        {/* Search Bar - Only visible when NO artist is selected */}
         {!selectedArtist && (
           <div className="mb-8 flex gap-3 animate-slideRight">
             <div className="flex-1 relative">
@@ -170,7 +170,7 @@ export default function Dashboard() {
                 value={artistQuery}
                 onChange={(e) => setArtistQuery(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && searchArtist()}
-                placeholder="Buscar artista en Spotify..."
+                placeholder="Search for artist on Spotify..."
                 className="w-full pl-12 pr-4 py-4 bg-[#181818] text-white rounded-2xl border border-[#282828] focus:border-[#1DB954] focus:outline-none focus:ring-2 focus:ring-[#1DB954]/20 transition-all placeholder-[#6a6a6a]"
               />
             </div>
@@ -213,7 +213,7 @@ export default function Dashboard() {
                 </div>
                 <h3 className="font-bold truncate text-white mb-1">{artist.name}</h3>
                 <p className="text-sm text-[#B3B3B3] truncate">
-                  {artist.followers.toLocaleString()} seguidores
+                  {artist.followers.toLocaleString()} followers
                 </p>
               </div>
             ))}
@@ -231,34 +231,34 @@ export default function Dashboard() {
                 </svg>
               </div>
             </div>
-            <p className="mt-4 text-[#B3B3B3] animate-pulse">Cargando datos del artista...</p>
+            <p className="mt-4 text-[#B3B3B3] animate-pulse">Loading artist data...</p>
           </div>
         )}
 
         {/* Artist Data */}
         {artistData && (
           <div className="space-y-6">
-            {/* Info box sobre popularidad */}
+            {/* Info box about popularity */}
             <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-2xl p-4 animate-fadeIn">
               <div className="flex items-start gap-3">
                 <div className="flex-1">
-                  <h3 className="text-blue-400 font-bold mb-1">¿Cómo funciona la Popularidad en Spotify?</h3>
+                  <h3 className="text-blue-400 font-bold mb-1">How does Popularity work on Spotify?</h3>
                   <p className="text-sm text-[#B3B3B3] mb-2">
-                    La popularidad es un valor entre <strong>0-100</strong> calculado por Spotify basado en el número total 
-                    de reproducciones y qué tan recientes son esas reproducciones.
+                    Popularity is a value between <strong>0-100</strong> calculated by Spotify based on the total number 
+                    of plays and how recent those plays are.
                   </p>
                   <div className="flex flex-wrap gap-2 text-xs">
                     <span className="bg-green-500/20 text-green-400 px-2 py-1 rounded-full border border-green-500/30">
-                      🔥 80-100: Muy Popular
+                      🔥 80-100: Very Popular
                     </span>
                     <span className="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded-full border border-yellow-500/30">
                       ⭐ 60-79: Popular
                     </span>
                     <span className="bg-orange-500/20 text-orange-400 px-2 py-1 rounded-full border border-orange-500/30">
-                      📈 40-59: Creciendo
+                      📈 40-59: Growing
                     </span>
                     <span className="bg-red-500/20 text-red-400 px-2 py-1 rounded-full border border-red-500/30">
-                      🌱 0-39: Emergente
+                      🌱 0-39: Emerging
                     </span>
                   </div>
                 </div>
@@ -282,18 +282,18 @@ export default function Dashboard() {
                   </h2>
                   <div className="grid grid-cols-2 gap-6 max-w-md">
                     <div className="bg-[#121212]/50 p-4 rounded-2xl border border-[#282828]">
-                      <p className="text-[#B3B3B3] text-sm mb-1">Seguidores</p>
+                      <p className="text-[#B3B3B3] text-sm mb-1">Followers</p>
                       <p className="text-3xl font-bold text-[#1DB954]">
                         {artistData.analytics.artist.followers.toLocaleString()}
                       </p>
                     </div>
                     <div className="bg-[#121212]/50 p-4 rounded-2xl border border-[#282828]">
-                      <p className="text-[#B3B3B3] text-sm mb-2">Popularidad Spotify</p>
+                      <p className="text-[#B3B3B3] text-sm mb-2">Spotify Popularity</p>
                       <div className="flex items-baseline gap-2 mb-2">
                         <p className="text-3xl font-bold text-white">{artistData.analytics.artist.popularity}</p>
                         <p className="text-lg text-[#B3B3B3]">/100</p>
                       </div>
-                      {/* Barra de popularidad */}
+                      {/* Popularity bar */}
                       <div className="w-full bg-[#282828] rounded-full h-2 overflow-hidden">
                         <div 
                           className={`h-full rounded-full transition-all duration-1000 ${
@@ -306,10 +306,10 @@ export default function Dashboard() {
                         ></div>
                       </div>
                       <p className="text-xs text-[#6a6a6a] mt-1">
-                        {artistData.analytics.artist.popularity >= 80 ? '🔥 Muy Popular' :
+                        {artistData.analytics.artist.popularity >= 80 ? '🔥 Very Popular' :
                          artistData.analytics.artist.popularity >= 60 ? '⭐ Popular' :
-                         artistData.analytics.artist.popularity >= 40 ? '📈 Creciendo' :
-                         '🌱 Emergente'}
+                         artistData.analytics.artist.popularity >= 40 ? '📈 Growing' :
+                         '🌱 Emerging'}
                       </p>
                     </div>
                   </div>
@@ -321,7 +321,7 @@ export default function Dashboard() {
                 <div className="bg-[#121212] p-5 rounded-2xl border border-[#282828] hover:border-[#1DB954] transition-all card-hover">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="text-2xl">💿</div>
-                    <p className="text-[#B3B3B3] text-sm">Álbumes</p>
+                    <p className="text-[#B3B3B3] text-sm">Albums</p>
                   </div>
                   <p className="text-3xl font-bold text-white">{artistData.analytics.metrics.total_albums}</p>
                 </div>
@@ -335,20 +335,20 @@ export default function Dashboard() {
                 <div className="bg-[#121212] p-5 rounded-2xl border border-[#282828] hover:border-[#1DB954] transition-all card-hover">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="text-2xl">📀</div>
-                    <p className="text-[#B3B3B3] text-sm">Lanzamientos</p>
+                    <p className="text-[#B3B3B3] text-sm">Releases</p>
                   </div>
                   <p className="text-3xl font-bold text-white">{artistData.analytics.metrics.total_releases}</p>
                 </div>
                 <div className="bg-[#121212] p-5 rounded-2xl border border-[#282828] hover:border-[#1DB954] transition-all card-hover">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="text-2xl">⭐</div>
-                    <p className="text-[#B3B3B3] text-sm">Pop. Media Tracks</p>
+                    <p className="text-[#B3B3B3] text-sm">Avg. Track Pop.</p>
                   </div>
                   <div className="flex items-baseline gap-1 mb-2">
                     <p className="text-3xl font-bold text-white">{artistData.analytics.metrics.avg_track_popularity}</p>
                     <p className="text-sm text-[#B3B3B3]">/100</p>
                   </div>
-                  {/* Mini barra de progreso */}
+                  {/* Mini progress bar */}
                   <div className="w-full bg-[#282828] rounded-full h-1.5 overflow-hidden">
                     <div 
                       className={`h-full rounded-full ${
@@ -389,7 +389,7 @@ export default function Dashboard() {
                   <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     Top Tracks
                   </h3>
-                  <p className="text-sm text-[#B3B3B3]">Las canciones más populares</p>
+                  <p className="text-sm text-[#B3B3B3]">Most popular songs</p>
                 </div>
               </div>
               <div className="space-y-3">
@@ -459,7 +459,7 @@ export default function Dashboard() {
                   <h3 className="text-2xl font-bold text-white" style={{ fontFamily: 'Poppins, sans-serif' }}>
                     Playlists
                   </h3>
-                  <p className="text-sm text-[#B3B3B3]">{artistData.playlists.length} playlists encontradas</p>
+                  <p className="text-sm text-[#B3B3B3]">{artistData.playlists.length} playlists found</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -490,7 +490,7 @@ export default function Dashboard() {
                       </div>
                     </div>
                     <p className="font-bold text-white text-sm mb-1 truncate">{playlist.name}</p>
-                    <p className="text-xs text-[#B3B3B3]">{playlist.tracks_total} canciones</p>
+                    <p className="text-xs text-[#B3B3B3]">{playlist.tracks_total} tracks</p>
                   </div>
                 ))}
               </div>

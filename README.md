@@ -1,74 +1,165 @@
-# Statify — Análisis para artistas desplegado con Docker
+# Statify
 
-Dashboard profesional para artistas de Spotify. Analiza tu música, descubre tu alcance y conecta con tu audiencia.
+**Artist Analytics Dashboard for Spotify**
 
-![GitHub](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)
-![Docker](https://img.shields.io/badge/docker-ready-blue?style=for-the-badge&logo=docker)
-![React](https://img.shields.io/badge/react-18.3-61DAFB?style=for-the-badge&logo=react)
-![FastAPI](https://img.shields.io/badge/fastapi-0.115-009688?style=for-the-badge&logo=fastapi)
+A containerized web application for Spotify artists to analyze their music performance, track popularity metrics, and discover playlist placements.
 
----
+![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
+![Docker](https://img.shields.io/badge/docker-ready-blue?style=flat-square&logo=docker)
+![React](https://img.shields.io/badge/react-18.3-61DAFB?style=flat-square&logo=react)
+![FastAPI](https://img.shields.io/badge/fastapi-0.115-009688?style=flat-square&logo=fastapi)
+![Python](https://img.shields.io/badge/python-3.11-3776AB?style=flat-square&logo=python)
 
-## 🚀 Características principales
-### 🎵 Análisis de Música
-- Top Tracks con métricas de popularidad
-- Análisis de álbumes y lanzamientos
-- Audio Features detallados - 🔐 **Login con Spotify OAuth2**
-- Visualiza tus **top tracks**, **artistas** y **géneros**
+## Overview
 
-### 🌐 Alcance
-- Playlists donde aparece tu música
-- Artistas relacionados y networking
-- Presencia en el ecosistema Spotify
+Statify provides artists with comprehensive insights into their Spotify presence through an intuitive dashboard. Built with modern web technologies and containerized for easy deployment.
 
----
+## Features
 
-## 🚀 Inicio Rápido
-1. **Configura Spotify API**
-   - Ve a https://developer.spotify.com/dashboard
+### Artist Analytics
+- Real-time follower count and popularity tracking
+- Top tracks performance metrics with visual indicators
+- Complete discography analysis (albums, singles, compilations)
+- Detailed popularity scoring (0-100 scale)
+- Genre classification and categorization
 
-   - Crea una app y obtén Client ID y Secret## 🧱 Arquitectura del proyecto
+### Distribution Insights
+- Playlist discovery and tracking
+- Track placement analytics
+- Album distribution overview
+- Release history and timeline
 
-   - Agrega `http://127.0.0.1:5000/callback` como Redirect URI
+### Authentication
+- Secure OAuth2 integration with Spotify
+- Token-based session management
+- Protected API endpoints
 
-2. **Configura el `.env`**
-```bash
-SPOTIFY_CLIENT_ID=tu_client_id
-SPOTIFY_CLIENT_SECRET=tu_client_secret
-SPOTIFY_REDIRECT_URI=http://127.0.0.1:5000/callback
+## Quick Start
+
+### Prerequisites
+- Docker and Docker Compose
+- Spotify Developer Account
+- Valid Spotify API credentials
+
+### Setup Instructions
+
+1. **Configure Spotify Developer Application**
+   ```
+   Navigate to: https://developer.spotify.com/dashboard
+   Create new application
+   Add redirect URI: http://127.0.0.1:5000/callback
+   ```
+
+2. **Environment Configuration**
+   
+   Create a `.env` file in the project root:
+   ```bash
+   SPOTIFY_CLIENT_ID=your_client_id
+   SPOTIFY_CLIENT_SECRET=your_client_secret
+   SPOTIFY_REDIRECT_URI=http://127.0.0.1:5000/callback
+   ```
+
+3. **Launch Application**
+   ```bash
+   chmod +x start.sh
+   ./start.sh
+   ```
+
+4. **Access the Dashboard**
+   ```
+   Frontend: http://127.0.0.1:3000
+   Backend API: http://127.0.0.1:5000
+   ```
+
+## Architecture
+
+### Technology Stack
+
+**Frontend**
+- React 18.3.1
+- Vite 6.0.1
+- TailwindCSS 3.4.15
+- Axios for HTTP requests
+
+**Backend**
+- FastAPI 0.115.0
+- Spotipy 2.24.0 (Spotify API wrapper)
+- Uvicorn ASGI server
+- Python 3.11
+
+**Infrastructure**
+- Docker containerization
+- Multi-container orchestration with Docker Compose
+- Nginx reverse proxy ready
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/auth/login` | Initialize OAuth flow |
+| GET | `/api/artist/search` | Search artists by query |
+| GET | `/api/artist/{id}/overview` | Artist profile information |
+| GET | `/api/artist/{id}/top-tracks` | Top performing tracks |
+| GET | `/api/artist/{id}/albums` | Complete discography |
+| GET | `/api/artist/{id}/playlists` | Playlist placements |
+| GET | `/api/artist/{id}/analytics` | Aggregated analytics data |
+
+### Project Structure
+
+```
+statify/
+├── backend/
+│   ├── app.py              # FastAPI application
+│   ├── spotify_client.py   # Spotify API integration
+│   ├── requirements.txt    # Python dependencies
+│   └── Dockerfile
+├── frontend/
+│   ├── src/
+│   │   ├── pages/         # React components
+│   │   └── index.css      # Global styles
+│   ├── package.json
+│   └── Dockerfile
+├── docker-compose.yml
+└── start.sh
 ```
 
-3. **Inicia la app**
+## Development
+
+### Local Development Setup
+
+**Backend**
 ```bash
-./start.sh
+cd backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+uvicorn app:app --reload
 ```
-4. **Accede**: http://127.0.0.1:3000
 
-## 📡 API Endpoints
+**Frontend**
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-- `GET /api/artist/search` - Buscar artistas
+### Docker Development
+```bash
+docker-compose up --build
+```
 
-- `GET /api/artist/{id}/overview` - Info general
+## License
 
-- `GET /api/artist/{id}/top-tracks` - Top canciones
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-- `GET /api/artist/{id}/albums` - Discografía
+## Contributing
 
-- `GET /api/artist/{id}/playlists` - Playlists
+Contributions are welcome. Please open an issue first to discuss proposed changes.
 
-- `GET /api/artist/{id}/analytics` - Análisis completo
+## Author
 
-## Capturas de pantalla
-### Landing Page
-![Landing](https://via.placeholder.com/800x400/191414/1DB954?text=Home+Page)
-### Dashboard
-![Dashboard](https://via.placeholder.com/800x400/191414/1DB954?text=Dashboard+with+Charts)
+**Bruno Alonso** - [GitHub](https://github.com/bait-py)
 
----
+## Acknowledgments
 
-## Créditos
-Hecho con 💚 por **[Bruno Alonso](https://github.com/bait-py)**  
-Inspirado en la experiencia de **Spotify for Artists** y el mundo DevOps
-
-## Licencia
-Este proyecto se distribuye bajo la licencia **MIT**.
+Inspired by Spotify for Artists platform and modern web development practices.
