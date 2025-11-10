@@ -1,50 +1,48 @@
 #!/bin/bash
 
-echo "🚀 Statify - Inicio del proyecto"
+echo "Statify - Starting application"
 echo "================================="
 echo ""
 
-# Verificar si Docker está instalado
+# Check if Docker is installed
 if ! command -v docker &> /dev/null; then
-    echo "❌ Docker no está instalado. Por favor, instala Docker primero."
+    echo "ERROR: Docker is not installed."
     exit 1
 fi
 
-# Verificar Docker Compose (v2 usa 'docker compose', v1 usa 'docker-compose')
+# Check Docker Compose (v2 uses 'docker compose', v1 uses 'docker-compose')
 if ! docker compose version &> /dev/null && ! command -v docker-compose &> /dev/null; then
-    echo "❌ Docker Compose no está instalado. Por favor, instala Docker Compose primero."
+    echo "ERROR: Docker Compose is not installed."
     exit 1
 fi
 
-# Determinar qué comando usar
+# Determine which command to use
 if docker compose version &> /dev/null; then
     DOCKER_COMPOSE="docker compose"
 else
     DOCKER_COMPOSE="docker-compose"
 fi
 
-# Verificar si existe el archivo .env
+# Check if .env file exists
 if [ ! -f .env ]; then
-    echo "❌ No se encontró el archivo .env"
-    echo "📝 Creando archivo .env de ejemplo..."
+    echo "ERROR: .env file not found"
+    echo "Creating .env from template..."
     cp .env.example .env
-    echo "⚠️  Por favor, edita el archivo .env con tus credenciales de Spotify"
+    echo "WARNING: Configure your Spotify credentials in .env before running"
     exit 1
 fi
 
-# Verificar si las credenciales están configuradas
+# Check if credentials are configured
 if grep -q "tu_client_id_aquí" .env; then
-    echo "⚠️  Credenciales de Spotify no configuradas en .env"
-    echo "📝 Por favor, edita el archivo .env con tus credenciales"
+    echo "WARNING: Spotify credentials not configured in .env"
+    echo "Edit .env file with your credentials before proceeding"
     exit 1
 fi
 
-echo "✅ Todo listo para iniciar"
-echo ""
-echo "🐳 Construyendo contenedores..."
+echo "Starting containers..."
 $DOCKER_COMPOSE up --build
 
 echo ""
-echo "🎉 ¡Aplicación iniciada!"
-echo "📱 Frontend: http://127.0.0.1:3000"
-echo "🔧 Backend: http://127.0.0.1:5000"
+echo "Application running:"
+echo "Frontend: http://127.0.0.1:3000"
+echo "Backend: http://127.0.0.1:5000"

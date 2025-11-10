@@ -162,7 +162,7 @@ export default function Dashboard() {
           <div className="mb-8 flex gap-3 animate-slideRight">
             <div className="flex-1 relative">
               <svg className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#B3B3B3]" 
-                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <input
@@ -307,9 +307,9 @@ export default function Dashboard() {
                       </div>
                       <p className="text-xs text-[#6a6a6a] mt-1">
                         {artistData.analytics.artist.popularity >= 80 ? '🔥 Very Popular' :
-                         artistData.analytics.artist.popularity >= 60 ? '⭐ Popular' :
-                         artistData.analytics.artist.popularity >= 40 ? '📈 Growing' :
-                         '🌱 Emerging'}
+                          artistData.analytics.artist.popularity >= 60 ? '⭐ Popular' :
+                          artistData.analytics.artist.popularity >= 40 ? '📈 Growing' :
+                          '🌱 Emerging'}
                       </p>
                     </div>
                   </div>
@@ -437,8 +437,8 @@ export default function Dashboard() {
                         </div>
                         <div className="text-xl">
                           {track.popularity >= 80 ? '🔥' :
-                           track.popularity >= 60 ? '⭐' :
-                           track.popularity >= 40 ? '📈' : '🌱'}
+                            track.popularity >= 60 ? '⭐' :
+                            track.popularity >= 40 ? '📈' : '🌱'}
                         </div>
                       </div>
                     </div>

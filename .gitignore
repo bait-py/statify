@@ -23,6 +23,10 @@ wheels/
 .installed.cfg
 *.egg
 .env
+backend/.cache
+.cache
+.cache-*
+
 # Node
 node_modules/
 npm-debug.log*
@@ -50,6 +54,28 @@ build/
 
 # Docker
 *.log
+docker-compose.override.yml
 
 # Vite
 .vite/
+
+# Package lock files (if using different package managers)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Python virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# OS
+Thumbs.db
+backend/.cache

@@ -27,9 +27,9 @@ export default function Home() {
     <div className="min-h-screen relative overflow-hidden" style={{ background: '#121212' }}>
       {/* Background gradient effect */}
       <div className="absolute inset-0 gradient-animated opacity-40" 
-           style={{ 
-             background: 'linear-gradient(135deg, #1DB954 0%, #121212 30%, #1ed760 60%, #121212 100%)'
-           }}>
+            style={{ 
+              background: 'linear-gradient(135deg, #1DB954 0%, #121212 30%, #1ed760 60%, #121212 100%)'
+            }}>
       </div>
       
       {/* Floating circles decoration */}
@@ -67,7 +67,7 @@ export default function Home() {
           
           {/* Features */}
           <div className={`${mounted ? 'animate-fadeIn' : 'opacity-0'} grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto my-12`} 
-               style={{ animationDelay: '0.4s' }}>
+                style={{ animationDelay: '0.4s' }}>
             <div className="bg-[#181818] p-6 rounded-2xl border border-[#282828] card-hover">
               <div className="text-4xl mb-3">📊</div>
               <h3 className="text-lg font-bold text-white mb-2">Real-time Analytics</h3>

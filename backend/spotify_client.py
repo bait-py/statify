@@ -1,6 +1,3 @@
-"""
-Spotify API Client - Maneja autenticación y peticiones a la API de Spotify
-"""
 import os
 from typing import Optional, Dict, Any
 import spotipy
@@ -10,8 +7,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class SpotifyClient:
-    """Cliente para interactuar con la API de Spotify"""
-    
     def __init__(self):
         self.client_id = os.getenv("SPOTIFY_CLIENT_ID")
         self.client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")

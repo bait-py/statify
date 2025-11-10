@@ -1,6 +1,3 @@
-"""
-Statify Artist Dashboard API - Backend para análisis de artistas en Spotify
-"""
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse
